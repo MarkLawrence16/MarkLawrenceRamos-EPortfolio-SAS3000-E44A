@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Career e-Portfolio of Mark Lawrence Ramos, Computer Engineering student at De La Salle University.">
+  <meta name="theme-color" content="#006b3f">
+  <title>Mark Lawrence Ramos | Career E-Portfolio</title>
+  <style>
+    :root {
+      --green: #006b3f;
+      --green-dark: #004d2d;
+      --green-soft: #eaf4ee;
+      --ink: #24332b;
+      --muted: #66756c;
+      --paper: #ffffff;
+      --surface: #f6f9f7;
+      --line: #dce8e0;
+      --shadow: 0 12px 32px rgba(0, 77, 45, .08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.7;
+    }
+    a { color: var(--green); }
+    button { font: inherit; }
+    .container { width: min(1080px, 90%); margin: 0 auto; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, .96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .nav {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+    .brand {
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: .05em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: .93rem;
+      font-weight: 600;
+      transition: color .2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--green); }
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--green);
+      border-radius: 8px;
+      padding: 8px 11px;
+      cursor: pointer;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 106px;
+      background: linear-gradient(120deg, #f4faf6 0%, #ffffff 65%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border: 1px solid rgba(0, 107, 63, .12);
+      border-radius: 50%;
+      right: -90px;
+      top: -130px;
+      box-shadow: 0 0 0 35px rgba(0, 107, 63, .025), 0 0 0 75px rgba(0, 107, 63, .02);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 760px; }
+    .eyebrow, .section-label {
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .76rem;
+      font-weight: 800;
+    }
+    h1 {
+      color: var(--green-dark);
+      font-size: clamp(2.55rem, 7vw, 4.8rem);
+      line-height: 1.06;
+      margin: 15px 0 18px;
+      letter-spacing: -.045em;
+    }
+    .hero p {
+      max-width: 690px;
+      color: #52645a;
+      font-size: 1.1rem;
+      margin: 0 0 25px;
+    }
+    .hero-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--green-dark);
+      background: var(--green-soft);
+      border: 1px solid #d4e8da;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    .hero-note::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: #2c9a60;
+      border-radius: 50%;
+    }
+    .hero-actions { margin-top: 27px; display: flex; flex-wrap: wrap; gap: 11px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 2px solid var(--green);
+      border-radius: 7px;
+      padding: 11px 18px;
+      background: var(--green);
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+      cursor: pointer;
+    }
+    .button:hover {
+      background: var(--green-dark);
+      border-color: var(--green-dark);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 7px 18px rgba(0, 77, 45, .16);
+    }
+    .button.secondary { background: white; color: var(--green); }
+    .button.secondary:hover { background: var(--green-soft); color: var(--green-dark); }
+
+    main section { padding: 72px 0; }
+    main section:nth-child(even) { background: var(--surface); }
+    .section-label { margin: 0 0 8px; }
+    h2 {
+      color: var(--green-dark);
+      font-size: clamp(1.8rem, 4vw, 2.35rem);
+      line-height: 1.2;
+      margin: 0 0 23px;
+      letter-spacing: -.025em;
+    }
+    h3 { color: var(--green-dark); margin: 0 0 8px; line-height: 1.35; }
+    .intro { max-width: 820px; }
+    .intro p { margin: 0 0 15px; }
+    .muted { color: var(--muted); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 3px 14px rgba(0, 77, 45, .035);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 13px; }
+    .skill {
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid #d8eade;
+      padding: 6px 11px;
+      border-radius: 6px;
+      font-size: .9rem;
+    }
+    .timeline-item { padding: 0 0 21px 19px; border-left: 2px solid #cfe3d5; position: relative; }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 2px solid white;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .date { color: var(--muted); font-size: .9rem; }
+    .project-card { max-width: 850px; }
+    .project-meta { color: var(--muted); font-size: .9rem; margin: -2px 0 14px; }
+    details {
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+    summary {
+      color: var(--green);
+      font-weight: 700;
+      cursor: pointer;
+      width: fit-content;
+    }
+    summary:hover { color: var(--green-dark); }
+    details ul { margin-bottom: 0; padding-left: 21px; }
+    li { margin: 5px 0; }
+    .contact-panel {
+      background: var(--green-dark);
+      color: white;
+      padding: 36px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+    }
+    .contact-panel .section-label { color: #b9e2c9; }
+    .contact-panel h2 { color: white; }
+    .contact-panel p { color: #e1eee6; }
+    .contact-panel a:not(.button) { color: white; }
+    .contact-panel .button { background: #ffffff; border-color: #ffffff; color: var(--green-dark); }
+    .contact-panel .button:hover { background: #eaf4ee; border-color: #eaf4ee; }
+    footer {
+      background: #073b25;
+      color: #d5e8dc;
+      text-align: center;
+      padding: 22px 0;
+      font-size: .88rem;
+    }
+    .back-to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 15;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--green);
+      color: white;
+      font-size: 1.25rem;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: all .2s ease;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+
+    @media (max-width: 720px) {
+      .nav { min-height: 66px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        padding: 16px 5% 20px;
+        background: white;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .nav-links.open { display: flex; }
+      .hero { padding: 72px 0 78px; }
+      main section { padding: 54px 0; }
+      .grid { grid-template-columns: 1fr; }
+      .contact-panel { padding: 26px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Mark Lawrence Ramos home">MLR.</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰ Menu</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#interests">Interests</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <div class="eyebrow">Computer Engineering Student</div>
+      <h1>Mark Lawrence<br>Ramos</h1>
+      <p>
+        A Computer Engineering student at De La Salle University developing
+        practical knowledge in programming, embedded systems, web development,
+        and networking through coursework and laboratory projects.
+      </p>
+      <span class="hero-note">Seeking internship opportunities in 2027</span>
+      <div class="hero-actions">
+        <a class="button" href="#projects">Explore My Project <span aria-hidden="true">→</span></a>
+        <a class="button secondary" href="MarkLawrenceRamos_RESUME.pdf" download>↓ Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="about">
+      <div class="container">
+        <p class="section-label">Introduction</p>
+        <h2>About Me</h2>
+        <div class="intro">
+          <p>
+            I am a fourth-year Bachelor of Science in Computer Engineering
+            student at De La Salle University. I am developing my technical
+            foundation through academic coursework and laboratory activities
+            involving programming, digital logic, microcontrollers, and
+            hardware-software integration.
+          </p>
+          <p>
+            I am interested in exploring opportunities in embedded systems,
+            software development, cybersecurity, IT support, and web
+            development. I aim to continue strengthening my technical skills
+            and apply what I learn to practical engineering problems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <p class="section-label">Academic Background</p>
+        <h2>Education & Achievements</h2>
+        <div class="card">
+          <div class="timeline-item">
+            <h3>De La Salle University</h3>
+            <div class="date">2023 – Present · Expected Graduation: 2028</div>
+            <p>Bachelor of Science in Computer Engineering</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Sacred Heart Academy of Pasig City</h3>
+            <div class="date">2021 – 2023</div>
+            <p>Senior High School · STEM Strand</p>
+            <p class="muted">With Honors · Pasig City Scholar (Grade 11)</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Sacred Heart Academy of Pasig City</h3>
+            <div class="date">2017 – 2021</div>
+            <p>Junior High School</p>
+            <p class="muted">With Honors · Pasig City Scholar (Grade 10)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <p class="section-label">Technical Competencies</p>
+        <h2>Skills</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Programming & Web</h3>
+            <div class="skill-list">
+              <span class="skill">Python</span><span class="skill">C++</span>
+              <span class="skill">Java</span><span class="skill">Verilog</span>
+              <span class="skill">HTML</span><span class="skill">CSS</span>
+              <span class="skill">PHP</span><span class="skill">SQL</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Embedded Systems & Electronics</h3>
+            <div class="skill-list">
+              <span class="skill">Arduino</span><span class="skill">PIC Microcontrollers</span>
+              <span class="skill">Digital Logic</span><span class="skill">PCB Design</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Development & Design Tools</h3>
+            <div class="skill-list">
+              <span class="skill">VS Code</span><span class="skill">Vivado</span>
+              <span class="skill">MATLAB</span><span class="skill">KiCad</span>
+              <span class="skill">Fusion PCB Design</span><span class="skill">GitHub</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Databases, Networking & Systems</h3>
+            <div class="skill-list">
+              <span class="skill">MySQL</span><span class="skill">XAMPP</span>
+              <span class="skill">Cisco Packet Tracer</span><span class="skill">Linux</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <p class="section-label">Selected Academic Work</p>
+        <h2>Academic Project</h2>
+        <article class="card project-card">
+          <h3>Distance-Sensing-Based Automatic Liquid Dispensing System for Cup Filling</h3>
+          <p class="project-meta">Microprocessor Laboratory Project · In Progress</p>
+          <p>
+            Developing a distance-sensing-based concept for automatically
+            dispensing liquid into a cup. The project applies microprocessor
+            and sensor concepts, with system implementation and testing ongoing.
+          </p>
+          <details>
+            <summary>View project learning focus</summary>
+            <ul>
+              <li>Applying sensor concepts to a practical automated system.</li>
+              <li>Exploring microprocessor-based control and hardware-software integration.</li>
+              <li>Developing and testing an engineering project through laboratory work.</li>
+            </ul>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section id="interests">
+      <div class="container">
+        <p class="section-label">Career Direction</p>
+        <h2>Areas of Interest</h2>
+        <div class="skill-list">
+          <span class="skill">Embedded Systems</span>
+          <span class="skill">Software Development</span>
+          <span class="skill">Cybersecurity</span>
+          <span class="skill">IT / Technical Support</span>
+          <span class="skill">Web Development</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <p class="section-label">Get in Touch</p>
+          <h2>Contact</h2>
+          <p>
+            For professional or internship-related inquiries, you may reach me
+            through my university email.
+          </p>
+          <p><strong>Email:</strong> <a href="mailto:mark_lawrence_ramos@dlsu.edu.ph">mark_lawrence_ramos@dlsu.edu.ph</a></p>
+          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/MarkLawrenceRamosDLSU" target="_blank" rel="noopener noreferrer">View my LinkedIn profile</a></p>
+          <a class="button" href="MarkLawrenceRamos_RESUME.pdf" download>↓ Download Resume (PDF)</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="currentYear">2026</span> Mark Lawrence Ramos · Career E-Portfolio
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const backToTop = document.getElementById("backToTop");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕ Close" : "☰ Menu";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰ Menu";
+      });
+    });
+
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle("visible", window.scrollY > 450);
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
